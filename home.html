@@ -22,7 +22,7 @@
 
   </style>
 </head>
-<body>
+<body ng-controller="home">
   <div id="wrap">
     <div class="container">
 
@@ -34,15 +34,46 @@
               <ul class="nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">Fiddle</a></li>
-                <li><a href="#">Links</a></li>
+                <li class="pull-right"><a href="#">Settings</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
+      <div ng-controller="test">
+        <p><a ng-click="set()">set</a></p>
+        <p><a ng-click="get()">get</a></p>
+        <p><a ng-click="del()">del</a></p>
+      </div>
 
-
+      <!-- Modal -->
+      <div id="showSettingsModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="settings">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          <h3 id="myModalLabel">Provide Mongolab infomation</h3>
+        </div>
+        <form class="form-horizontal" ng-submit="submit()">
+          <div class="modal-body">
+            <div class="control-group">
+              <label class="control-label" for="inputApiKey">Api key</label>
+              <div class="controls">
+                <input type="text" id="inputApiKey" placeholder="Api key..." ng-model="form.apiKey">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="inputDatabase">Database</label>
+              <div class="controls">
+                <input type="text" id="inputDatabase" placeholder="Database name..." ng-model="form.database">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button class="btn btn-primary">Save and use</button>
+          </div>
+        </form>
+      </div>
 
       <div class="footer">
         <p>&copy; done by ziax 2013</p>
@@ -52,7 +83,9 @@
   <div id="footer">
     <p>TODO</p>
   </div>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/ziax-app.js"></script>
 </body>
 </html>

@@ -9,10 +9,12 @@
     "default_icon": "icon.png"
   },
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "background": {
     "persistent": false,
     "scripts": ["js/start.js"]
-  }
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
