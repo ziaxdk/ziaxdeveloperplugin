@@ -9,7 +9,7 @@
     "default_icon": "icon.png"
   },
   "permissions": [
-    "https://mongolab.com",
+    "https://api.mongolab.com/",
     "tabs",
     "storage"
   ],
