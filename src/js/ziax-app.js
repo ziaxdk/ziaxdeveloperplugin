@@ -1,11 +1,26 @@
 angular.module("ziax-app", [
     'ziax-app-mongo', 
     'ziax-app-browserStorage'
-]).controller("home", [
+]).service("Settings", function () {
+    var apiKey = "none", database = "NONE";
+    return {
+        apiKey: function () {
+            return apiKey;
+        },
+        database: function () {
+            return database;
+        },
+        setApiKey: function (key) {
+            return apiKey = key;
+        }
+    };
+}).controller("home", [
     "$scope", 
     "Storage", 
     "Mongo", 
-    function ($scope, Storage, Mongo) {
+    "Settings", 
+    function ($scope, Storage, Mongo, Settings) {
+        console.log("Settings is", Settings);
         $scope.settings = {
         };
         Storage.get(function (res) {
@@ -17,14 +32,11 @@ angular.module("ziax-app", [
         });
         $scope.$on("ready:settings", function (evt, settings) {
             $scope.settings = settings;
+            Settings.setApiKey("123");
+            console.log("Settings is", Settings);
         });
         $scope.del = function () {
-            Storage.clear();
-            $scope.settings = {
-            };
-            toastr.info("deleted");
         };
-        Mongo.get();
     }]).controller("settings", [
     "$scope", 
     "Storage", 
@@ -44,7 +56,13 @@ angular.module("ziax-app", [
     }]).controller("test", [
     "$scope", 
     "Storage", 
-    function ($scope, Storage) {
+    "Settings", 
+    "Mongo", 
+    function ($scope, Storage, Settings, Mongo) {
+        $scope.click = function () {
+            console.log(Settings);
+            Mongo.query();
+        };
     }]).run([
     "$rootScope", 
     function ($rootScope) {

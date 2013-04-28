@@ -1,93 +1,90 @@
 <!doctype html>
 <html ng-app="ziax-app">
 <head>
-  <title>Ziax</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/toastr.min.css" rel="stylesheet">
-  <style type="text/css">
-  html, body {
-    height: 100%;
-  }
-  #wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    /* Negative indent footer by it's height */
-    margin: 0 auto -60px;
-  }  
-  #footer {
-    height: 60px;
-    background-color: #f5f5f5;
-  }
-
-
-  </style>
+    <title>Ziax</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/toastr.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body ng-controller="home">
-  <div id="wrap">
+<div id="wrap">
     <div class="container">
 
-      <div class="masthead">
-        <h3 class="muted">ziax developer tools</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Fiddle</a></li>
-                <li class="pull-right"><a href="#">Settings</a></li>
-              </ul>
+        <div class="masthead">
+            <h3 class="muted">ziax developer tools</h3>
+
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">Fiddle</a></li>
+                            <li class="pull-right"><a href="#">Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
 
 
-      <div id="showSettingsModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="settings">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-          <h3 id="myModalLabel">Provide Mongolab infomation</h3>
+        <div id="showSettingsModel" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" ng-controller="settings">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 id="myModalLabel">Provide Mongolab infomation</h3>
+            </div>
+            <form class="form-horizontal" ng-submit="submit()">
+                <div class="modal-body">
+                    <p><a href="https://mongolab.com/signup" target="_blank">Mongolab</a> will provide 500mb of storage
+                        for free. If you don't have an account, go <a href="https://mongolab.com/signup"
+                                                                      target="_blank">here</a> to sign up
+
+                    <div class="control-group">
+                        <label class="control-label" for="inputApiKey">Api key</label>
+
+                        <div class="controls">
+                            <input type="text" id="inputApiKey" placeholder="Api key..." ng-model="form.apiKey">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputDatabase">Database</label>
+
+                        <div class="controls">
+                            <input type="text" id="inputDatabase" placeholder="Database name..."
+                                   ng-model="form.database">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-primary">Save and use</button>
+                </div>
+            </form>
         </div>
-        <form class="form-horizontal" ng-submit="submit()">
-          <div class="modal-body">
-            <p><a href="https://mongolab.com/signup" target="_blank">Mongolab</a> will provide 500mb of storage for free. If you don't have an account, go <a href="https://mongolab.com/signup" target="_blank">here</a> to sign up
-            <div class="control-group">
-              <label class="control-label" for="inputApiKey">Api key</label>
-              <div class="controls">
-                <input type="text" id="inputApiKey" placeholder="Api key..." ng-model="form.apiKey">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputDatabase">Database</label>
-              <div class="controls">
-                <input type="text" id="inputDatabase" placeholder="Database name..." ng-model="form.database">
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button class="btn btn-primary">Save and use</button>
-          </div>
-        </form>
-      </div>
 
-      <div class="footer">
-        <p>&copy; done by ziax 2013</p>
-      </div>
+        <div class="footer">
+            <p>&copy; done by ziax 2013</p>
+        </div>
     </div>
-  </div>
-  <div id="footer">
-    <span>Apikey: {{settings.apiKey}}</span> - <span>Database: {{settings.database}}</span> <div class="pull-right"><a ng-click="del()">Del</a></div>
-  </div>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/toastr.min.js"></script>
-  <script type="text/javascript" src="js/angular.min.js"></script>
-  <script type="text/javascript" src="js/angular-resource.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/ziax-app-browser-storage.js"></script>
-  <script type="text/javascript" src="js/ziax-app-chrome-storage.js"></script>
-  <script type="text/javascript" src="js/ziax-app-mongo.js"></script>
-  <script type="text/javascript" src="js/ziax-app.js"></script>
+    <div ng-controller="test">
+        <button ng-click="click()">Click</button>
+
+    </div>
+</div>
+<div id="footer">
+    <span>Apikey: {{settings.apiKey}}</span> - <span>Database: {{settings.database}}</span>
+
+    <div class="pull-right"><a ng-click="del()">Del</a></div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/toastr.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-resource.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/ziax-app-browser-storage.js"></script>
+<script type="text/javascript" src="js/ziax-app-chrome-storage.js"></script>
+<script type="text/javascript" src="js/ziax-app-mongo.js"></script>
+<script type="text/javascript" src="js/ziax-app.js"></script>
 </body>
 </html>
 

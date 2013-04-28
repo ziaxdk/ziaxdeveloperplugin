@@ -2,13 +2,12 @@ angular.module("ziax-app-mongo", [
     'ngResource'
 ]).factory('$mongolabResource', [
     '$resource', 
-    'API_KEY', 
-    'DB_NAME', 
-    function ($resource, API_KEY, DB_NAME) {
+    'Settings', 
+    function ($resource, Settings) {
         function MmongolabResourceFactory(collectionName) {
             var _this = this;
-            var resource = $resource('https://api.mongolab.com/api/1/databases/' + DB_NAME + '/collections/' + collectionName + '/:id', {
-                apiKey: API_KEY,
+            var resource = $resource('https://api.mongolab.com/api/1/databases/' + Settings.database() + '/collections/' + collectionName + '/:id', {
+                apiKey: "api",
                 id: '@_id.$oid'
             }, {
                 update: {
@@ -43,15 +42,15 @@ angular.module("ziax-app-mongo", [
             resource.prototype['delete'] = function (cb, errorcb) {
                 return _this.remove(cb, errorcb);
             };
+            console.log("func", collectionName, Settings);
+            ; ;
             return resource;
         }
         return MmongolabResourceFactory;
-    }]).service("Mongo", [
-    function () {
-        return {
-            get: function () {
-                console.log("get");
-            }
-        };
+    }]).factory("Mongo", [
+    "$mongolabResource", 
+    "Settings", 
+    function (resource) {
+        return new resource('projects');
     }]);
 //@ sourceMappingURL=ziax-app-mongo.js.map
